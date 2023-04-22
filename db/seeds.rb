@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+puts 'Cleaning Database...'
+Movie.destroy_all
+
+puts "Creating Database..."
+
+20.times do
+  Movie.create(
+    title: Faker::Movie.title,
+    overview: Faker::Lorem.sentence(word_count: 4),
+    poster_url: Faker::LoremFlickr.image(size: '300x300', search_terms: ['movies']),
+    rating: rand(1..10)
+  )
+end
+puts "We have our DB with #{Movie.count} movies"
