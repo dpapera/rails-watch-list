@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
-puts 'Cleaning Database...'
+puts 'Cleaning Movies Database...'
 Movie.destroy_all
+puts 'Cleaning Lists Database...'
+List.destroy_all
 
-puts "Creating Database..."
+puts "Creating Movies Database..."
 
 20.times do
   Movie.create(
@@ -19,4 +21,15 @@ puts "Creating Database..."
     rating: rand(1..10)
   )
 end
-puts "We have our DB with #{Movie.count} movies"
+puts "We have our Movies DB with #{Movie.count} movies"
+
+
+puts "Creating Lists Database..."
+
+List.create!(name: 'Action')
+List.create!(name: 'Comedy')
+List.create!(name: 'Thriller')
+List.create!(name: 'Musical')
+List.create!(name: 'Cartoon')
+
+puts "We have our Lists DB with #{List.count} lists"
